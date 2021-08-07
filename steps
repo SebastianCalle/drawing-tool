@@ -1,0 +1,12 @@
+1. Leer archivo input.txt
+2. Validar todos los comandos que no hayan caracteres especiales
+3. que el primero sea crear el Canvas y sino retornar que primero deben crear un canvas
+4. Crear clase para DrawingTool
+5. crear los metodos
+6. Crear el canvas
+7. ejecutar comandos
+8. draw_line
+9. validar que sean cordenadas validas que no sean numeros negativos
+10. draw_rectangle
+11. Validar que no existan cordenadas en el mismo arreglo
+12. bucket_fill

@@ -1,0 +1,35 @@
+from interfaces.bucket_file_interfaces import IBucketFill
+from interfaces.canvas_interface import ICanvas
+from interfaces.line_interfaces import ILine
+from interfaces.rectangle_interfaces import IRectangle
+
+
+class ICommandLine:
+
+    my_commands = {
+        'C': ICanvas,
+        'R': IRectangle,
+        'L': ILine,
+        'B': IBucketFill
+    }
+
+    def __init__(self, list_commands):
+        self._commands = list_commands
+        self._instances = {}
+        self._execute_commands()
+
+    def _execute_commands(self):
+
+        if self._commands:
+            if self._commands[0][0].upper() != 'C':
+                raise ValueError('First command must be create a canvas C w h')
+
+        for command in self._commands:
+            self._instances[command[0]] = self.my_commands[command[0]](command, self._instances)
+
+        print(self._instances)
+
+
+if __name__ == '__main__':
+    commands = [['C', '20', '4'], ['L', '1', '2', '6', '2'], ['L', '6', '3', '6', '4'], ['R', '16', '1', '20', '3'], ['B', '10', '2', 'c'], ['C', '25', '4'], ['L', '6', '3', '6', '4'], ['B', '1', '2', 'c']]
+    coline = ICommandLine(commands)
