@@ -1,4 +1,4 @@
-from validators import is_valid_command
+from utils.validators import is_valid_command
 
 
 class FileHandler:
@@ -18,4 +18,8 @@ class FileHandler:
                 else:
                     raise ValueError('File not valid')
 
-    def writh_file(self):
+    
+    @classmethod
+    def write_file(cls, char):
+        with open('output.txt', 'a') as the_file:
+            the_file.write(char)

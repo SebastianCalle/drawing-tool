@@ -4,6 +4,8 @@ from drawing_tools.bucket_fill import BucketFill
 from drawing_tools.rectangle import Rectangle
 from drawing_tools.line import Line
 
+from utils.file_handler import FileHandler
+
 
 class Canvas(ABC):
     """ Class to provide canvas for drawing tool."""
@@ -14,6 +16,7 @@ class Canvas(ABC):
         self._matrix = []
         self._coordinates = coordinates
         self._shape = 'x'
+        self.file = FileHandler()
         self.create_canvas()
 
     @property
@@ -69,7 +72,9 @@ class Canvas(ABC):
     def print_canva(self):
         for x in range(len(self._matrix)):
             for y in range(len(self._matrix[0])):
+                self.file.write_file(self._matrix[x][y])
                 print(self._matrix[x][y], end='')
+            self.file.write_file("\n")
             print('')
 
     def validate_coordinates(self,x1,y1,x2,y2):
@@ -82,15 +87,3 @@ class Canvas(ABC):
         if x >  self._width or y > self._height:
             print( f'x, y {x}, {y} ')
             raise ValueError('Coordinates pass the grid')
-
-if __name__ == '__main__':
-    canva = Canvas(20, 4)
-    line = Line(5,2,1,2,canva)
-    # line = [(1, 2), (2, 2), (3, 2), (4, 2), (5, 2)]
-    #canva.coordinates =
-    line2 = Line(6,2,6,4,canva)
-    # canva.coordinates = line2.make_line()
-    rectangle = Rectangle(16,1,20,3, canva)
-    color = 'R'
-    bucket_fill = BucketFill(12,2, color, canva)
-

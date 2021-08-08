@@ -24,12 +24,5 @@ class ICommandLine:
             if self._commands[0][0].upper() != 'C':
                 raise ValueError('First command must be create a canvas C w h')
 
-        for command in self._commands:
-            self._instances[command[0]] = self.my_commands[command[0]](command, self._instances)
-
-        print(self._instances)
-
-
-if __name__ == '__main__':
-    commands = [['C', '20', '4'], ['L', '1', '2', '6', '2'], ['L', '6', '3', '6', '4'], ['R', '16', '1', '20', '3'], ['B', '10', '2', 'c'], ['C', '25', '4'], ['L', '6', '3', '6', '4'], ['B', '1', '2', 'c']]
-    coline = ICommandLine(commands)
+            for command in self._commands:
+                self._instances[command[0]] = self.my_commands[command[0]](command, self._instances)
