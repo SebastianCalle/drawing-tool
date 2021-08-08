@@ -1,10 +1,17 @@
 from utils.validators import is_valid_command
+import os
 
 
 class FileHandler:
 
     def __init__(self):
         self.commands = []
+        self._validate_file_exists()
+
+    @classmethod
+    def write_file(cls, char):
+        with open('output.txt', 'a') as the_file:
+            the_file.write(char)
 
     def read_file(self):
 
@@ -18,8 +25,7 @@ class FileHandler:
                 else:
                     raise ValueError('File not valid')
 
-    
-    @classmethod
-    def write_file(cls, char):
-        with open('output.txt', 'a') as the_file:
-            the_file.write(char)
+
+    def _validate_file_exists(self):
+        if os.path.exists("output.txt"):
+            os.remove("output.txt")

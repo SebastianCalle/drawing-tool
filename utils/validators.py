@@ -1,12 +1,17 @@
+import re
+
 def is_valid_command(line):
+    regex_validators = {
+        "C": re.compile('[C] [1-9][0-9]? [1-9][0-9]?$'),
+        "L": re.compile('[L] [1-9][0-9]? [1-9][0-9]? [1-9][0-9]? [1-9][0-9]?$'),
+        "R": re.compile('[R] [1-9][0-9]? [1-9][0-9]? [1-9][0-9]? [1-9][0-9]?$'),
+        "B": re.compile('[B] [1-9][0-9]? [1-9][0-9]? [a-z]$')
+
+    }
     command = line.replace('\n', '').split(' ')
-    if command[0].upper() == 'C' and len(command) == 3:
+    print(command)
+    print(line)
+    if re.match(regex_validators.get(command[0], None), line):
         return True
-    elif command[0].upper() == 'L' and len(command) == 5:
-        return True
-    elif command[0].upper() == 'R' and len(command) == 5:
-        return True
-    elif command[0].upper() == 'B' and len(command) == 4:
-        return True
-    else:
-        return False
+    return False
+
